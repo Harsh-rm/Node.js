@@ -1,5 +1,4 @@
 // Observer Pattern
-
 const EventEmitter = require('events');
 const celebrity1 = new EventEmitter();
 

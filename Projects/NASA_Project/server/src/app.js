@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const planetsRouter = require('./routes/planets/planets.router');
 
@@ -11,6 +12,8 @@ const app = express();
 app.use(cors({
     origin: 'http://localhost:3000',
 }));
+
+app.use(morgan('combined'));
 
 app.use(express.json());
 // this middleware will parse any json data incoming from the body of the request

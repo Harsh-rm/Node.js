@@ -2,8 +2,8 @@ function findUser(user) {
     return `found ${user.firstname} ${user.lastname}`
 }
 
-const userData {
-    firstname: 'John'
+const userData = {
+    firstname: 'John',
     lastname: 'Hopkins'
 }
 

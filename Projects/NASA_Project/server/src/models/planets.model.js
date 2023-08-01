@@ -41,6 +41,8 @@ function loadPlanetsData() {
                     results.push(data);
                 }
             })
+            // pending - understand the parse functionallity and the listener function .on('data')
+            // of the createReadStream() through testing - mark once done
             .on('end', () => {
                 // console.log(results.map((parameter_planet) => {
                 //     return parameter_planet['kepler_name'];
@@ -56,7 +58,12 @@ function loadPlanetsData() {
     });
 }
 
+// Data Access functions are part of layered arcitecture - https://www.vadimbulavin.com/layered-architecture-ios/
+function getAllPlanets() {
+    return results;
+}
+
 module.exports = {
     loadPlanetsData,
-    planets: results,
+    getAllPlanets,
 }

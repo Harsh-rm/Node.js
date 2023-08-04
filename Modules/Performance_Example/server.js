@@ -1,5 +1,7 @@
 //Performance Enhancement script
 const express = require('express');
+// const cluster = require('cluster');
+// const os = require('os');
 
 const app = express();
 
@@ -29,13 +31,28 @@ function delay(duration) {
 */
 
 app.get('/', (req, res) => {
-    res.send('Performance example');
+    res.send(`Performance example: Worker id => ${process.pid}`);
 });
 
 app.get('/timer', (req, res) => {
     //dealy the response
-    delay(9000);
-    res.send('Ding ding ding!');
+    delay(5000);
+    res.send(`Beep beep beep!: Worker id => ${process.pid}`);
 })
+
+console.log(`Starting Worker process...`)
+console.log(`Running server.js at ${process.cwd()}`);
+
+// if(cluster.isMaster) {
+//     console.log('Master is running...');
+//     const NUM_WORKERS = os.cpus().length;
+//     for (let i = 0; i < NUM_WORKERS; i++) {
+//         cluster.fork();
+//     }
+//     // cluster.fork();
+// } else {
+//     console.log('Worker process is running...');
+//     app.listen(3000);
+// }
 
 app.listen(3000);

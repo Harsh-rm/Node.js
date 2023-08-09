@@ -1,15 +1,13 @@
-// const planets = [];
-
-// module.exports = planets;
-
 // importing built-ins from commonJS
 const fs = require('fs');
 const path = require('path');
 
 // importing 3rd party library through npm installation
-const { parse } = require('csv-parse'); 
+const { parse } = require('csv-parse');
 
-const results = [];
+const planets = require('./planets.mongo');
+
+// const habitablePlanets = [];
 
 function isHabitablePlanet(planet) {
 
@@ -29,6 +27,7 @@ promise.then((result) => {
 const result = await promise;
 console.log(result);
 */
+
 function loadPlanetsData() {
     return new Promise((resolve, reject) => {
         fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'kepler_data.csv'))
@@ -36,18 +35,23 @@ function loadPlanetsData() {
                 comment: '#',
                 columns: true,
             }))
-            .on('data', (data) => {
-                if (isHabitablePlanet(data)){
-                    results.push(data);
+            .on('data', async (data) => {
+                if (isHabitablePlanet(data)) {
+                    // habitablePlanets.push(data);
+                    /* await planets.create({
+                        keplerName: data.kepler_name,
+                    }); */
+                    savePlanet(data);
                 }
             })
             // pending - understand the parse functionallity and the listener function .on('data')
             // of the createReadStream() through testing - mark once done
-            .on('end', () => {
-                // console.log(results.map((parameter_planet) => {
-                //     return parameter_planet['kepler_name'];
+            .on('end', async () => {
+                // console.log(habitablePlanets.map((parameter_planet) => {
+                //     return parameter_planet['habitablePlanets'];
                 // }));
-                console.log(`${results.length} habitable planets found!`)
+                const countPlanetsFound = (await getAllPlanets()).length;
+                console.log(`${countPlanetsFound} habitable planets found!`)
                 // console.log('Done!');
                 resolve();
             })
@@ -59,8 +63,24 @@ function loadPlanetsData() {
 }
 
 // Data Access functions are part of layered arcitecture - https://www.vadimbulavin.com/layered-architecture-ios/
-function getAllPlanets() {
-    return results;
+async function getAllPlanets() {
+    // the mongoose find operation takes in filter as an object as argument
+    return await planets.find({}); // an empty object will return all the documents
+}
+
+async function savePlanet(planet) {
+    // insert + update = upsert
+    try {
+        await planets.updateOne({
+            keplerName: planet.kepler_name, // this statement checks if this field exists, if true then
+        }, {
+            keplerName: planet.kepler_name, // this statement updates the above field by populating it
+        }, {
+            upsert: true,
+        });
+    } catch(err) {
+        console.error(`Could not save planet ${err}`);
+    }
 }
 
 module.exports = {

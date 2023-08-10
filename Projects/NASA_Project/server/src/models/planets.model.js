@@ -5,7 +5,7 @@ const path = require('path');
 // importing 3rd party library through npm installation
 const { parse } = require('csv-parse');
 
-const planets = require('./planets.mongo');
+const planetsCollection = require('./planets.mongo');
 
 // const habitablePlanets = [];
 
@@ -65,13 +65,15 @@ function loadPlanetsData() {
 // Data Access functions are part of layered arcitecture - https://www.vadimbulavin.com/layered-architecture-ios/
 async function getAllPlanets() {
     // the mongoose find operation takes in filter as an object as argument
-    return await planets.find({}); // an empty object will return all the documents
+    return await planetsCollection.find({/*filter*/}, { /*projection*/
+        '_id': 0, '__v': 0, // 0 indicates mongoose to exclude these properties in the documents
+    }); // an empty object in filter parameter will return all the documents
 }
 
 async function savePlanet(planet) {
     // insert + update = upsert
     try {
-        await planets.updateOne({
+        await planetsCollection.updateOne({
             keplerName: planet.kepler_name, // this statement checks if this field exists, if true then
         }, {
             keplerName: planet.kepler_name, // this statement updates the above field by populating it

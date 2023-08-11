@@ -26,6 +26,11 @@ async function mongoConnect() {
     the new version 6 and higher of mongoose uses these options by default */
 }
 
+async function mongoDisconnect() {
+    await mongoose.disconnect();
+}
+
 module.exports = { 
     mongoConnect,
+    mongoDisconnect,
 }

@@ -66,7 +66,7 @@ async function saveLaunch(launch) {
             upsert: true,
         })
     } catch(err) {
-        console.log(`Could not save launch ${save}`);
+        console.Error(`Could not save launch ${err}`);
     }
 }
 

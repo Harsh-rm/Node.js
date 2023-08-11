@@ -1,11 +1,17 @@
 const request = require('supertest');
 const app = require('../../app');
-const { mongoConnect } = require('../../services/mongo');
+const { 
+    mongoConnect, mongoDisconnect,
+} = require('../../services/mongo');
 
 // Creating a nested testing Environment to setup our mongo connection
 describe('Launches API', () => {
     beforeAll(async () => {
         await mongoConnect();
+    });
+
+    afterAll(async () => {
+        await mongoDisconnect();
     });
 
     // Creating a test fixture with different test cases
@@ -23,20 +29,20 @@ describe('Launches API', () => {
         const launchData = {
             mission: 'USS Enterprise',
             rocket: 'Instersteller Space Explorer',
-            target: 'kepler-186 f',
+            target: 'Kepler-62 f',
             launchDate: 'January 4, 2028',
         };
 
         const launchDataWithoutDate = {
             mission: 'USS Enterprise',
             rocket: 'Instersteller Space Explorer',
-            target: 'kepler-186 f',
+            target: 'Kepler-62 f',
         };
 
         const launchDataWithInvalidDate = {
             mission: 'USS Enterprise',
             rocket: 'Instersteller Space Explorer',
-            target: 'kepler-186 f',
+            target: 'Kepler-62 f',
             launchDate: 'zoot',
         }
 

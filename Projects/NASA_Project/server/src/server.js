@@ -5,6 +5,7 @@ const http = require('http');
 const app = require('./app');
 const { mongoConnect } = require('./services/mongo');
 const { loadPlanetsData } = require('./models/planets.model');
+const { loadLaunchesData } = require('./models/launches.model');
 
 const PORT = process.env.PORT || 8000;
 // console.log(PORT);
@@ -16,6 +17,7 @@ const server = http.createServer(app);
 async function startServer() {
     await mongoConnect();
     await loadPlanetsData();
+    await loadLaunchesData();
 
     // now we can use the server object to start listening on the localhost's port
     server.listen(PORT, () => { // => callback function used as a response

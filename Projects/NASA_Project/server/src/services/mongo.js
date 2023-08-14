@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // The data can be persisted in server.js of the project API
-const MONGO_URL = 'mongodb+srv://NASA-API:Harshith98@cluster0.lgbfufw.mongodb.net/NASA-database?retryWrites=true&w=majority';
+const MONGO_URL = process.env.MONGO_URL;
 // The cluster resides at this address: cluster0.lgbfufw.mongodb.net
 
 // We can use the handlers anywhere in the file as long as mongoose is required by the server file

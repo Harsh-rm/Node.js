@@ -12,19 +12,19 @@ const SPACEX_API_URL = 'https://api.spacexdata.com/v4/launches/query';
 const DEFAULT_FLIGHT_NUMBER = 100;
 
 // marking w.r.t SpaceX API response
-const launch = {
-    flightNumber: 100, // flight_number
-    mission: 'Johannes Kepler Exploration', // name
-    rocket: 'Explorer IS1', // rocket.name
-    launchDate: new Date('December 27, 2030'), // date_local
-    target: 'Kepler-442 b', // N/A
-    customers: ['ZTM', 'NASA'], // payloads[].customers 
-    upcoming: true, // upcoming
-    success: true, // success
-};
+// const launch = {
+//     flightNumber: 100, // flight_number
+//     mission: 'Johannes Kepler Exploration', // name
+//     rocket: 'Explorer IS1', // rocket.name
+//     launchDate: new Date('December 27, 2030'), // date_local
+//     target: 'Kepler-442 b', // N/A
+//     customers: ['ZTM', 'NASA'], // payloads[].customers 
+//     upcoming: true, // upcoming
+//     success: true, // success
+// };
 
 // TODO: learn how this save is performed, check when the launches.model script runs
-saveLaunch(launch);
+// saveLaunch(launch);
 
 async function populateLaunches() {
 
@@ -122,6 +122,7 @@ async function loadLaunchesData() {
 async function getAllLaunches(skip, limit) {
     return await launchesCollection
     .find({}, {_id: 0, __v: 0,})
+    .sort({ flightNumber: 1 })
     .skip(skip)
     .limit(limit);
     // return Array.from(launches.values());

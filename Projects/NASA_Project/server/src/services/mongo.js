@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+require('dotenv').config();
+
 // The data can be persisted in server.js of the project API
 const MONGO_URL = process.env.MONGO_URL;
 // The cluster resides at this address: cluster0.lgbfufw.mongodb.net

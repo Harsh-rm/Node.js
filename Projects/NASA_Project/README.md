@@ -1,9 +1,9 @@
 # NASA Launch Project #
-This project is a version of the NASA Mission Control project from the Complete Node.js Developer: Zero to Mastery course on Udemy.
-The front end is a React clone which can be found under the client folder of the project.
-The user interface is built using the Arwes web framework which provides futuristic science fiction designs, animation and sound effects. It tries to inspire advanced science and technology.
-The front end makes requests to the server through the express API on Node.js runtime hosted on your local machine.
-The server is connected to MongoDB using the Node.js Mongoose package following the MVC Pattern.
+- This project is a version of the NASA Mission Control project from the Complete Node.js Developer: Zero to Mastery course on Udemy.
+- The front end is a **React-clone** which can be found under the client folder of the project.
+- The user interface is built using the **Arwes** web framework which provides futuristic science fiction designs, animation and sound effects. It tries to inspire advanced science and technology.
+- The front end makes requests to the server through the *express API* on *Node.js runtime* hosted on your local machine.
+- The server is connected to the *MongoDB* database hosted on the cloud using the Node.js *Mongoose* package following the MVC Pattern.
 
 ## Getting Started ##
 - - - -

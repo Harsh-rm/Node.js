@@ -20,3 +20,9 @@ To run any automated tests, `run npm test`. This will:
 
 1. Run all the client-side tests: `npm test --prefix client`
 2. Run all the server-side tests: `npm test --prefix server`
+
+
+![Screenshot from 2023-09-02 09-06-02](https://github.com/Harsh-rm/Node.js/assets/98628286/6132b038-55b6-4d6b-b2b7-0aebc16d3796)
+![Screenshot from 2023-09-02 09-38-39](https://github.com/Harsh-rm/Node.js/assets/98628286/12c1c7b8-fd1d-49bd-b238-9d13b09b9cb4)
+![Screenshot from 2023-09-02 09-39-00](https://github.com/Harsh-rm/Node.js/assets/98628286/1c4f2866-9f26-4744-99c2-f6fa9e5e97d8)
+![Screenshot from 2023-09-02 09-42-09](https://github.com/Harsh-rm/Node.js/assets/98628286/950ac6da-09fc-4d83-8d81-456a184d2763)
